@@ -65,6 +65,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#footer">Contact Us</a></li>
+          <li><a href="{{ route('login') }}" class="text-decoration-none">Login</a></li>
         </ul>
       </nav><!-- .main-nav-->
 
