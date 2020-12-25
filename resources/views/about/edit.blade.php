@@ -1,0 +1,55 @@
+@extends('adminlte::page')
+
+@section('title', 'AdminLTE')
+
+@section('content')
+    <section class="container">
+        <h1 class="text-center">About Edit</h1>
+        <form action="/about/{{ $about->id }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method("put")
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <div class="form-group">
+              <label for="formGroupExampleInput">Titre</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" value="{{ $about->titre }}" name="titre">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Phrase1</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" value="{{ $about->phrase1 }}" name="phrase1">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Phrase2</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" value="{{ $about->phrase2 }}" name="phrase2">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Skill1</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" value="{{ $about->skill1 }}" name="skill1">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Skill2</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" value="{{ $about->skill2 }}" name="skill2">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Skill3</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" value="{{ $about->skill3 }}" name="skill3">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Image</label>
+                <input type="file" class="form-control"  id="formGroupExampleInput2" value ="{{ $about->path }}" name="path" >
+            </div>
+    
+            <div class="d-flex justify-content-center pt-5">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+        </form>
+    </section>
+@stop

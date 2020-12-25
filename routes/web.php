@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PortfolioController;
@@ -23,11 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 // Route Accueil site Rapid
-Route::get("/accueil", [AccueilController::class, "index"]);
+Route::get("/", [AccueilController::class, "index"])->name("accueil");
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -37,9 +37,9 @@ Auth::routes();
 
 Route::get('/home', function() {
     return view('home');
-})->name('home')->middleware('auth');
+})->name('home')->middleware(["auth", "acces"]);
 // Route Menu
-Route::get("/admin/menu", [MenuController::class, "index"])->name("menu");
+Route::get("/menu", [MenuController::class, "index"])->middleware("acces")->name("menu");
 // Route User
 Route::resource("/user", UserController::class);
 // Route Banner 
@@ -54,3 +54,9 @@ Route::resource("/feature", FeatureController::class);
 Route::resource("/portfolio", PortfolioController::class);
 // Route Testimonial
 Route::resource("/testimonial", TestimonialController::class);
+// Route Mail
+Route::post("/send-email", [EmailController::class, "sendMail"]);
+
+
+
+

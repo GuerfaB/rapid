@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Feature;
 use App\Models\Portfolio;
 use App\Models\Service;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class AccueilController extends Controller
@@ -17,6 +18,7 @@ class AccueilController extends Controller
         $service = Service::all();
         $feature = Feature::all();
         $portfolio = Portfolio::all();
-        return view("accueil", compact("banner", "about", "service", "feature", "portfolio"));
+        $testimonial = Testimonial::all();
+        return view("accueil", compact("banner", "about", "service", "feature", "portfolio","testimonial"));
     }
 }
